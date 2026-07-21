@@ -62,9 +62,23 @@
             margin: 5px 10px;
         }
 
-        /* Image Upload Placeholders */
-        .image-placeholder {
+        /* Banner Container */
+        .banner-container {
             width: 100%;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .guarantee-placeholder {
+            width: 100%;
+            min-height: 120px;
             background-color: #eee;
             border: 2px dashed #ccc;
             border-radius: 8px;
@@ -77,14 +91,6 @@
             margin: 25px 0;
             text-align: center;
             padding: 20px;
-        }
-
-        .banner-placeholder {
-            min-height: 300px;
-        }
-
-        .guarantee-placeholder {
-            min-height: 150px;
         }
 
         /* Sections */
@@ -278,12 +284,9 @@
             <span class="highlight-item">🌿 100% Natural (No Side Effects)</span>
         </div>
 
-        <!-- Section: Product Banner Image Placeholder -->
-        <div class="image-placeholder banner-placeholder">
-            <div>
-                <p>📷 [ UPLOAD YOUR PRODUCT BANNER HERE ]</p>
-                <small>Replace this div with: &lt;img src="your-banner.jpg" style="width:100%;" /&gt;</small>
-            </div>
+        <!-- Integrated Product Banner Image -->
+        <div class="banner-container">
+            <img src="https://raw.githubusercontent.com/jobaly/organic-wine/37fe1209fdaf46213c4bb0cf7b85ae951732bbc9/quadri-babatunde2606750n-a-1783110434-png-selar.com-20260703082714.jpg" alt="Ravella Ultra Solution Organic Wine Banner">
         </div>
 
         <!-- Section: Do You Experience Any Of These? -->
@@ -328,10 +331,10 @@
         </section>
 
         <!-- Section: 100% Guarantee Image Placeholder -->
-        <div class="image-placeholder guarantee-placeholder">
+        <div class="guarantee-placeholder">
             <div>
                 <p>🛡️ [ UPLOAD 100% GUARANTEE IMAGE HERE ]</p>
-                <small><img src="https://github.com/jobaly/organic-wine/blob/37fe1209fdaf46213c4bb0cf7b85ae951732bbc9/quadri-babatunde2606750n-a-1783110434-png-selar.com-20260703082714.jpg" alt="100% Guarantee" style="max-width: 250px; display: block; margin: 0 auto;"></small>
+                <small>Replace this div with: &lt;img src="guarantee-badge.png" style="max-width:200px;" /&gt;</small>
             </div>
         </div>
 
@@ -394,9 +397,6 @@
     <script>
         document.getElementById('checkoutForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevents default form submission
-            
-            // Redirect to a Thank You page URL
-            // Change "thank-you.html" to your actual thank-you page URL
             window.location.href = "thank-you.html"; 
         });
     </script>
