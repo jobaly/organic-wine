@@ -76,21 +76,18 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .guarantee-placeholder {
+        /* Guarantee Image Container */
+        .guarantee-container {
             width: 100%;
-            min-height: 120px;
-            background-color: #eee;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: bold;
             margin: 25px 0;
             text-align: center;
-            padding: 20px;
+        }
+
+        .guarantee-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* Sections */
@@ -330,12 +327,9 @@
             </div>
         </section>
 
-        <!-- Section: 100% Guarantee Image Placeholder -->
-        <div class="guarantee-placeholder">
-            <div>
-                <p>🛡️ [ UPLOAD 100% GUARANTEE IMAGE HERE ]</p>
-                <img src="https://raw.githubusercontent.com/jobaly/organic-wine/37fe1209fdaf46213c4bb0cf7b85ae951732bbc9/quadri-babatunde2606750n-a-1783110434-png-selar.com-20260703082714.jpg" alt="Ravella Ultra Solution Organic Wine Banner">
-            </div>
+        <!-- Guarantee Section using the Same Image -->
+        <div class="guarantee-container">
+            <img src="https://raw.githubusercontent.com/jobaly/organic-wine/37fe1209fdaf46213c4bb0cf7b85ae951732bbc9/quadri-babatunde2606750n-a-1783110434-png-selar.com-20260703082714.jpg" alt="100% Quality Guarantee">
         </div>
 
         <!-- Section: Order Form -->
