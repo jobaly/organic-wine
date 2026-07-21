@@ -245,6 +245,11 @@
             background-color: #218838;
         }
 
+        .submit-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
         /* Sticky Button */
         .sticky-btn {
             position: fixed;
@@ -281,7 +286,7 @@
             <span class="highlight-item">🌿 100% Natural (No Side Effects)</span>
         </div>
 
-        <!-- NEW Product Banner Image -->
+        <!-- Product Banner Image -->
         <div class="banner-container">
             <img src="https://raw.githubusercontent.com/jobaly/organic-wine/564772589de2fefd5a2a1dfb0453f0d14b83b3b0/IMG-20260720-WA0057.jpg" alt="Ravella Ultra Solution Organic Wine Banner">
         </div>
@@ -304,7 +309,7 @@
         <section>
             <div class="article-card">
                 <h3>Unleash Ultimate Man Power in the Bedroom</h3>
-                <p>Performance anxiety and physical fatigue can ruin intimacy. <strong>Ravella Ultra Solution Organic Wine</strong> is specifically formulated using rare organic botanicals to boost blood circulation directly where you need it most. It delivers hard, long lasting erections and unmatched stamina so you can satisfy your partner completely every single time without any harmful side effects or artificial chemicals.</p>
+                <p>Performance anxiety and physical fatigue can ruin intimacy. <strong>Ravella Ultra Solution Organic Wine</strong> is specifically formulated using rare organic botanicals to boost blood circulation directly where you need it most. It delivers hard, long-lasting erections and unmatched stamina so you can satisfy your partner completely every single time—without any harmful side effects or artificial chemicals.</p>
                 <br>
                 <p>Beyond bed power, this natural tonic works systematically to elevate low sperm count, clear general physical weakness, supercharge your daily energy, and build a ironclad immune system.</p>
             </div>
@@ -338,44 +343,45 @@
                 <h2 style="text-align: center; margin-bottom: 15px;">Place Your Order Now</h2>
                 <p style="text-align: center; color: #555; margin-bottom: 20px;">Pay Cash/Transfer Upon Delivery</p>
                 
-                <form id="checkoutForm">
+                <!-- Formspree Endpoint Integrated Below -->
+                <form id="checkoutForm" action="https://formspree.io/f/xzdlkzbp" method="POST">
                     <div class="form-group">
                         <label for="fullname">Full Name *</label>
-                        <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+                        <input type="text" id="fullname" name="Full Name" required placeholder="Enter your full name">
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Call Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="Enter active phone number">
+                        <input type="tel" id="phone" name="Call Phone Number" required placeholder="Enter active phone number">
                     </div>
 
                     <div class="form-group">
                         <label for="whatsapp">WhatsApp Phone Number *</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Enter WhatsApp number">
+                        <input type="tel" id="whatsapp" name="WhatsApp Number" required placeholder="Enter WhatsApp number">
                     </div>
 
                     <div class="form-group">
                         <label>Select Solution Plan *</label>
                         
                         <label class="radio-option">
-                            <input type="radio" name="solution_plan" value="1 Bottle - 45,000" required checked>
+                            <input type="radio" name="Solution Plan" value="1 Bottle - 45,000" required checked>
                             <strong>1 Bottle</strong> of Ravella Ultra Solution (750ml) — <strong>₦45,000</strong>
                         </label>
 
                         <label class="radio-option">
-                            <input type="radio" name="solution_plan" value="2 Bottles - 75,000">
+                            <input type="radio" name="Solution Plan" value="2 Bottles - 75,000">
                             <strong>2 Bottles</strong> of Ravella Ultra Solution (750ml) — <strong>₦75,000</strong>
                         </label>
 
                         <label class="radio-option">
-                            <input type="radio" name="solution_plan" value="3 Bottles - 130,000">
+                            <input type="radio" name="Solution Plan" value="3 Bottles - 130,000">
                             <strong>3 Bottles</strong> of Ravella Ultra Solution (750ml) — <strong>₦130,000</strong>
                         </label>
                     </div>
 
                     <div class="form-group">
                         <label for="address">Delivery Address *</label>
-                        <textarea id="address" name="address" rows="3" required placeholder="Street address, City, State"></textarea>
+                        <textarea id="address" name="Delivery Address" rows="3" required placeholder="Street address, City, State"></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">CONFIRM ORDER NOW</button>
@@ -387,11 +393,41 @@
     <!-- Sticky Bottom Button -->
     <a href="#order-form" class="sticky-btn">🛒 ORDER NOW - PAYMENT ON DELIVERY</a>
 
-    <!-- JavaScript Handling Form Redirect -->
+    <!-- JavaScript to Handle AJAX Formspree Submit & Thank You Redirect -->
     <script>
-        document.getElementById('checkoutForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevents default form submission
-            window.location.href = "thank-you.html"; 
+        document.getElementById('checkoutForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Stop default form submit
+            
+            const form = event.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            
+            // Show processing state on button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing Order...';
+
+            try {
+                // Submit data to Formspree asynchronously
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Redirect to Thank You page on success
+                    window.location.href = "thank-you.html";
+                } else {
+                    alert("There was an issue submitting your order. Please try again.");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'CONFIRM ORDER NOW';
+                }
+            } catch (error) {
+                alert("Network error. Please check your internet connection and try again.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'CONFIRM ORDER NOW';
+            }
         });
     </script>
 </body>
